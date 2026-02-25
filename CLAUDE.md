@@ -189,6 +189,20 @@ model.save_pretrained(output_path)
 2. Wait 1-2 minutes for indexing
 3. Fallback to local path for evaluation
 
+### 11. Torchvision NMS Operator Error
+**Problem:** `RuntimeError: operator torchvision::nms does not exist` when importing unsloth.
+
+**Cause:** PyTorch/torchvision version mismatch in Colab environment.
+
+**Solution:** Reinstall torchvision before unsloth:
+```python
+!pip uninstall -y torchvision -q
+!pip install torchvision --no-deps -q
+!pip install -q "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+```
+
+**Important:** Must restart runtime first if error already occurred.
+
 ## Key Lessons
 
 ### Colab-Specific
